@@ -6,7 +6,7 @@ import time
 
 
 def sign_in(email, password):
-    """Sign in, if no previous session please provide F2A authentication when prompted"""
+    """Sign in, if no previous session please provide 2FA authentication when prompted"""
     user = Client(str(email), str(password))
     return user
 
@@ -20,7 +20,7 @@ def send_message(sender, recipient):
         time.sleep(2)
 
 
-def find_user():
+def find_user(client):
     """Find and choose a specific user"""
     users = []
     place = -1
@@ -48,10 +48,10 @@ def load_cookies():
         pass
 
 
-def save_cookies(client2):
+def save_cookies(client):
     """Save cookies after a session, for faster login"""
     with open('session.json', 'w') as f:
-        json.dump(client2.getSession(), f)
+        json.dump(client.getSession(), f)
 
 
 def send_text_file(file):
