@@ -1,14 +1,22 @@
 from distlib.compat import raw_input
 from fbchat import Client
 from fbchat.models import *
+from tkinter import simpledialog
 import json
 import time
 
 
 def sign_in(email, password):
     """Sign in, if no previous session please provide 2FA authentication when prompted"""
-    user = Client(str(email), str(password))
+    user = CustomClient(str(email), str(password))
     return user
+
+
+class CustomClient(Client):
+    """Custom subclass for overriding"""
+    def on2FACode(self):
+        """Override method for submitting 2FA code"""
+        return simpledialog.askstring("2FA", 'Please enter your 2FA code')
 
 
 def send_message(sender, recipient):

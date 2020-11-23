@@ -3,7 +3,7 @@ from tkinter import Label
 
 
 class LoginPage(tk.Tk):
-    """A login page object with for submitting email and password"""
+    """A login page GUI for submitting email and password"""
 
     def __init__(self):
         """Create an instance of LoginPage"""
