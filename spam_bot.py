@@ -5,11 +5,9 @@ import json
 import time
 
 
-def sign_in():
+def sign_in(email, password):
     """Sign in, if no previous session please provide F2A authentication when prompted"""
-    email = raw_input("Your email: ")
-    password = raw_input("Password: ")
-    user = Client(email, password, session_cookies=load_cookies())
+    user = Client(str(email), str(password))
     return user
 
 
@@ -37,7 +35,7 @@ def find_user():
         place = int(input("Enter number, in case the user is not listed, press enter and try their name again:"))
         if 0 <= place <= 3:
             not_found = False
-    return users[place-1]
+    return users[place - 1]
 
 
 def load_cookies():
@@ -46,7 +44,7 @@ def load_cookies():
         with open('session.json', 'r') as f:
             cookies = json.load(f)
             return cookies
-    except:
+    except FileNotFoundError:
         pass
 
 
@@ -58,10 +56,3 @@ def save_cookies(client2):
 
 def send_text_file(file):
     pass
-
-
-client = sign_in()
-session_cookies = client.getSession()
-target_user = find_user()
-send_message(client, target_user)
-save_cookies(client)
