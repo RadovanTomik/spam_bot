@@ -1,8 +1,8 @@
-from fbchat.models import *
 from GUI import *
-from spam_bot import sign_in
+from spam_bot import CustomClient
 
 
-login = LoginPage()
-login.mainloop()
-client = sign_in(login.username, login.password)
+#login = LoginPage()
+#client = CustomClient
+#client.sign_in(login.username, login.password)
+main_page = MainPage()
